@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load app_extras %}
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <a href="{% url 'index' %}" style="text-decoration: none; color: blue;">Home</a>
+</div>
+<div style="display: flex; margin: 50px">
+    <div style="width: 300px; border: 3px">
+        <ul style="list-style-type: none; padding: 0;">
+            {% all_region as regions %}
+            {% for region in regions %}
+            <li>
+                <a href="{% url 'region-detail' region.id %}" style="text-decoration: none; color: black;"><h2>{{ region.name }}</h2></a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div style="width: 100%; border: 3px;">
+        {% if region %}
+        <h3 style="margin-top: 0;">Maydoni: {{ region.area }} km<sup>2</sup></h3>
+        <h3>Aholi soni: {{ region.population }} dona insonni tashkil etadi </h3>
+        {% if product.img %}
+        <img src="{{ region.img.url }}" alt="rasm" style="width: 1080px;">
+        {% endif %}
+        {% else %}
+            <h1 style="text-align: center; font-weight: bold; color: black;">Shaharlardan birini tanlang</h1>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
